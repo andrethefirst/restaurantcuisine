@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RestaurantCuisine.Models.Cuisine
+
+<h2>Cuisine Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Type): @Html.DisplayFor(model => model.Type)<h3>
+
+<h2>Restaurants:</h2>
+@foreach(var restaurant in ViewBag.Restaurants)
+{
+   <li>@Html.ActionLink($"{restaurant.Name}", "Details", "Restaurants", new { id = restaurant.RestaurantId })</li>
+}
+
+<p>@Html.ActionLink("Edit Category", "Edit", new { id = Model.CuisineId })</p>
+<p>@Html.ActionLink("Delete Category", "Delete", new { id = Model.CuisineId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>

@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RestaurantCuisine.Models.Restaurant
+
+<h2>Restaurant Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)<h3>
+
+
+<button class="btn btn-secondary">@Html.ActionLink("Edit Restaurant", "Edit", new { id = Model.RestaurantId })</button>
+<button class="btn btn-danger">@Html.ActionLink("Delete Restaurant", "Delete", new { id = Model.RestaurantId })</button>
+<button class="btn btn-success">@Html.ActionLink("Back to list", "Index")</button>
+
+
+<h2>Reviews:</h2>
+@if(ViewBag.Reviews.Count == 0)
+{
+  <p>There are no reviews for this restaurant</p>
+  
+}
+
+@foreach(var review in ViewBag.Reviews)
+{
+   <li>@Html.ActionLink($"{review.Title}", "Details", "Reviews", new { id = review.ReviewId }) | @review.Name</li>
+   
+}
+
+<button class="btn btn-Warning">@Html.ActionLink("Add a review", "Create", "Reviews")</button>
